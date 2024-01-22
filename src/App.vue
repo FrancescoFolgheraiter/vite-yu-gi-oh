@@ -34,7 +34,6 @@ export default{
 </script>
 
 <template>
-	<h1>My template Vite Vue Sass</h1>
 	<AppHeader/>
 	<AppMain/>
 	<AppFooter/>
@@ -42,5 +41,7 @@ export default{
 
 <style lang="scss">
 @use"assets/scss/main.scss" as *;
-
+body{
+	background-color: orange;
+}
 </style>

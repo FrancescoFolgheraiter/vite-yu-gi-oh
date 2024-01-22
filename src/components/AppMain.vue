@@ -21,8 +21,16 @@ export default{
 
 <template>
 	<main>
-		<div class="contaier">
+		<div class="container mt-4">
+			<select name="" id="">
+				<option value="">Alien</option>
+			</select>
+		</div>
+		<div class="contaier m-5 bg-white p-5">
 			<div class="row">
+				<div class="col-12 bg-black text-white mb-3">
+					Found {{ store.cards.length }} cards
+				</div>
 				<div v-for="(elem, i ) in store.cards" :key="i" class="col-12 col-sm-6 col-md-2">
 					<SingleCard :card="elem"/>
 				</div>
@@ -33,4 +41,5 @@ export default{
 </template>
 
 <style lang ="scss" scoped>
+
 </style>
