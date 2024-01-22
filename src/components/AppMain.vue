@@ -1,6 +1,7 @@
 <script>
 //importazione app single card
 import SingleCard from './SingleCard.vue';
+
 //importazione store
 import { store } from '../store.js';
 export default{
@@ -10,7 +11,7 @@ export default{
 		};
 	},
 	components:{
-		SingleCard 
+		SingleCard
 	},
 	methods:{
 
@@ -31,9 +32,9 @@ export default{
 				<div class="col-12 bg-black text-white mb-3">
 					Found {{ store.cards.length }} cards
 				</div>
-				<div v-for="(elem, i ) in store.cards" :key="i" class="col-12 col-sm-6 col-md-2">
-					<SingleCard :card="elem"/>
-				</div>
+					<div v-for="(elem, i ) in store.cards" :key="i" class="col-12 col-sm-6 col-md-2">
+						<SingleCard :card="elem"/>
+					</div>
 			</div>
 		</div>
 		
