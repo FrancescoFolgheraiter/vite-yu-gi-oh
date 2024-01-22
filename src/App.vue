@@ -40,7 +40,7 @@ export default{
 </script>
 
 <template>
-	<div v-if="!(this.flag)" class="d-flex justify-content-center">
+	<div v-if="!(this.flag)">
 		<CardLoader/>
 	</div>
 	<div v-else>
