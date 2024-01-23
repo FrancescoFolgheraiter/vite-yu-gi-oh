@@ -14,7 +14,9 @@ export default{
 		SingleCard
 	},
 	methods:{
-
+		changeType(value){
+			this.store.typeActive = value
+		}
 	}
 }
 
@@ -23,8 +25,8 @@ export default{
 <template>
 	<main>
 		<div class="container mt-4">
-			<select name="" id="">
-				<option :value ="elem" v-for="(elem, i ) in store.selectType" :key="i" @click="updateCards()">
+			<select v-model="store.typeActive" name="typecard" @click="$emit('archetypeSearch')">
+				<option name="typecard" :value ="elem" v-for="(elem, i ) in store.selectType" :key="i" @click="changeType(value)">
 					{{elem}}
 				</option>
 			</select>

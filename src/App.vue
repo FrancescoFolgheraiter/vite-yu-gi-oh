@@ -23,26 +23,31 @@ export default{
 		CardLoader
 	},
 	methods:{
-		updateTypeSelcet(query){
-			this.store.selectType=[];
-			for (let i = 0; i < this.store.cards.length; i++) {
-				const archetype = query[i].archetype;
-				if(!(query[i].archetype==undefined) && !(this.store.selectType.includes(archetype))){
-					this.store.selectType.push(archetype)
+		getCardsFromApi(){
+			axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php',{
+				params:{
+					archetype:this.store.typeActive
 				}
-			}
-			console.log(this.store.selectType)
-		},
-		updateCards(){
-
+			})
+			.then((response) => {
+				this.store.cards = response.data.data
+				console.log(this.store.cards)
+				console.log(this.store.typeActive)
+            })
+			.catch((error) => {
+                    this.store.cards = [];
+			});
 		}		
 	},
 	//utilizzo api 
 	created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=10').then((response) => {
-                this.store.cards = response.data.data
-				this.updateTypeSelcet(response.data.data)
-				console.log(this.store.cards)
+        this.getCardsFromApi();
+		axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php').then((response) => {
+			for (let i = 0; i < response.data.length; i++) {
+				this.store.selectType.push(response.data[i].archetype_name)
+				
+			}
+			console.log("selectType",this.store.selectType)
             });
 		setTimeout(()=>{
             this.flag = true;
@@ -58,7 +63,7 @@ export default{
 	</div>
 	<div v-else>
 		<AppHeader/>
-		<AppMain/>
+		<AppMain @archetypeSearch="getCardsFromApi()"/>
 		<AppFooter/>
 	</div>
 </template>

@@ -2,7 +2,6 @@
 export default{
 	data() {
 		return{
-			text:"Footer"
 		};
 	},
 	components:{
@@ -17,7 +16,7 @@ export default{
 
 <template>
 	<footer>
-		{{ text }}
+
 	</footer>
 </template>
 
