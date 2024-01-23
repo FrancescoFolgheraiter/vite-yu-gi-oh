@@ -24,19 +24,25 @@ export default{
 	},
 	methods:{
 		getCardsFromApi(){
-			axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php',{
-				params:{
-					archetype:this.store.typeActive
-				}
-			})
-			.then((response) => {
-				this.store.cards = response.data.data
-				console.log(this.store.cards)
-				console.log(this.store.typeActive)
-            })
-			.catch((error) => {
-                    this.store.cards = [];
-			});
+			if(this.store.typeActive == ""){
+				axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=54&offset=0')
+				.then((response) => {
+					this.store.cards = response.data.data
+				})
+			}
+			else{
+				axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php',{
+					params:{
+						archetype:this.store.typeActive
+					}
+				})
+				.then((response) => {
+					this.store.cards = response.data.data
+				})
+				.catch((error) => {
+						this.store.cards = [];
+				});
+			}
 		}		
 	},
 	//utilizzo api 

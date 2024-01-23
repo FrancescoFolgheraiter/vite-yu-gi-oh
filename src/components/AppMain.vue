@@ -26,6 +26,7 @@ export default{
 	<main>
 		<div class="container mt-4">
 			<select v-model="store.typeActive" name="typecard" @click="$emit('archetypeSearch')">
+				<option value="" name="typecard">All</option>
 				<option name="typecard" :value ="elem" v-for="(elem, i ) in store.selectType" :key="i" @click="changeType(value)">
 					{{elem}}
 				</option>
