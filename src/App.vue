@@ -23,17 +23,30 @@ export default{
 		CardLoader
 	},
 	methods:{
+		updateTypeSelcet(query){
+			this.store.selectType=[];
+			for (let i = 0; i < this.store.cards.length; i++) {
+				const archetype = query[i].archetype;
+				if(!(query[i].archetype==undefined) && !(this.store.selectType.includes(archetype))){
+					this.store.selectType.push(archetype)
+				}
+			}
+			console.log(this.store.selectType)
+		},
+		updateCards(){
 
+		}		
 	},
 	//utilizzo api 
 	created() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0').then((response) => {
+        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=10').then((response) => {
                 this.store.cards = response.data.data
+				this.updateTypeSelcet(response.data.data)
 				console.log(this.store.cards)
             });
 		setTimeout(()=>{
             this.flag = true;
-        }, 2000)
+        }, 2000);
     }
 }
 

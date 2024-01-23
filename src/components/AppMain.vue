@@ -24,7 +24,9 @@ export default{
 	<main>
 		<div class="container mt-4">
 			<select name="" id="">
-				<option value="">Alien</option>
+				<option :value ="elem" v-for="(elem, i ) in store.selectType" :key="i" @click="updateCards()">
+					{{elem}}
+				</option>
 			</select>
 		</div>
 		<div class="contaier m-5 bg-white p-5">
